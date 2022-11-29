@@ -37,3 +37,10 @@ let data = await shoes_ff.getData()
         "shoes": data
     })
 })
+
+const PORT = process.env.PORT || 3008
+
+app.listen(PORT, function() {
+    console.log('App started at port:', PORT)
+
+})
