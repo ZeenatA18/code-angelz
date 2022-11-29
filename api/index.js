@@ -12,7 +12,7 @@ if (process.env.DATABASE_URL && !local) {
     useSSL = true;
 }
 
-const DATABASE_URL = process.env.DATABASE_URL || 'postgresql://postgres:pg123@localhost:5432/shoes_api';
+const DATABASE_URL = process.env.DATABASE_URL || 'postgresql://postgres:pg123@localhost:5432/jifunze_db';
 
 const config = {
     connectionString: DATABASE_URL,
@@ -27,3 +27,13 @@ const jifunze = jifunze_ffs(db);
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
 app.use(cors())
+
+app.get('/', async function(req, res){
+    // res.render('index') never use render in api
+
+let data = await shoes_ff.getData()
+
+    res.json({
+        "shoes": data
+    })
+})
