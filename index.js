@@ -28,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
 app.use(cors())
 app.use(express.static('public'))
+
 // app.get('/', async function(req, res){
 //     // res.render('index') never use render in api
 
