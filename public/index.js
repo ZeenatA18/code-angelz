@@ -1,8 +1,10 @@
-let score = 1;
+let add_score = 1;
 
-let scoreElement = document.querySelector('score_count');
 
-scoreElement.innerText = score_count;
+let scoreElement = document.querySelector('.add_score');
+// console.log(scoreElement)
+scoreElement.innerText = add_score;
+// console.log(score_count)
 
-const score_box = document.querySelector('score_box');
+const score_box = document.querySelector('.score_box');
 
