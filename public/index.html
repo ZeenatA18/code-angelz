@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>JiFunze</title>
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -86,6 +86,10 @@
   
   <button type="button"><a>PRESS NEXT</a></button> -->
 
+  <div class="score_box">
+    <div>score <span class="body_count">0</span></div>
+  </div>
+
   <div>Teachable Machine Pose Model</div>
 <button type="button" onclick="init()">Start</button>
 <div><canvas id="canvas"></canvas></div>
@@ -141,11 +145,18 @@
         // Prediction 2: run input through teachable machine classification model
         const prediction = await model.predict(posenetOutput);
 
-        for (let i = 0; i < maxPredictions; i++) {
-            const classPrediction =
-                prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-            labelContainer.childNodes[i].innerHTML = classPrediction;
-        }
+        console.log(prediction)
+
+        // const scoreData = prediction[0];
+
+        // console.log(scoreData);
+
+
+        // for (let i = 0; i < maxPredictions; i++) {
+        //     const classPrediction =
+        //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+        //     labelContainer.childNodes[i].innerHTML = classPrediction;
+        // }
 
         // finally draw the poses
         drawPose(pose);
