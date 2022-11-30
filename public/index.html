@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,104 +12,10 @@
   <h1>Ji-fu-nze</h1>
 
   <div class="score_box">
-    <div class="scored">score <span class="body_count">0</span></div>
+    <div class="scored">score <span class="add_score">0</span></div>
   </div>
 </div>
-  <div>Teachable Machine Pose Model</div>
-<button type="button" onclick="init()">Start</button>
-=======
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JiFunze</title>
-    <link rel="stylesheet" href="./css/style.css">
-  </head>
-  <body>
-    
-    <h1>Ji-fu-nze</h1>
-    
-    <!-- <div class="slideshow-container">
-      
-      <div class="mySlides fade">
-        <img src="pictures/9c5950a2276ccb97bbcbb5346544b9fd.jpg" style="width:30%">
-        <div class="text">Caption Text</div>
-      </div>
-  
-      <div class="mySlides fade">
-        <img src="pictures/ce4d7e7ae712b13e9e6e50957e90e43e.jpg" style="width:30%">
-      </div>
-      
-      <div class="mySlides fade">
-        <img src="pictures/cute-girl-face-cartoon_18591-41516.webp" style="width:30%">
-      </div>
-      
-      <div class="mySlides fade">
-        <img src="pictures/sense-parts-b-science-education-illustration-icons-representing-five-senses-attached-to-central-brain-78660621.jpg" style="width:30%">
-      </div>
-      
-      <div class="mySlides fade">
-        <img src="pictures/360_F_172190549_4xmlw96Sjt8w3WcqjKLVwtLOrJbWRLCL.jpg" style="width:30%">
-      </div>
-      
-      <div class="mySlides fade">
-        <img src="pictures/mouth-cartoon-icon-vector-11580920.jpg" style="width:30%">
-      </div>
-      
-      <div class="mySlides fade">
-        <img src="pictures/funny-mouth-with-tongue-out-comic-icon-free-vector.jpg" style="width:30%">
-      </div>
-  
- 
-      
-    </div>
-    <br>
-    
-    <div style="text-align:center">
-      <span class="dot"></span> 
-      <span class="dot"></span> 
-      <span class="dot"></span> 
-      <span class="dot"></span> 
-      <span class="dot"></span> 
-      <span class="dot"></span> 
-      <span class="dot"></span> 
-      <span class="dot"></span> 
-      <span class="dot"></span> 
-    </div>
-    
-    <script>
-      let slideIndex = 0;
-      showSlides();
-      
-      function showSlides() {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("dot");
-        for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";  
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1}    
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-    
-    
-    slides[slideIndex-1].style.display = "block";  
-    dots[slideIndex-1].className += " active";
-    setTimeout(showSlides, 3000); // Change image every 2 seconds
-  }
-</script>
-
-
-<button type="button"><a>PRESS NEXT</a></button> -->
-
-<div class="score_box">
-  <div>score <span class="add_score">0</span></div>
-</div>
-
-<div>Teachable Machine Pose Model</div>
->>>>>>> 3ce46fa588333da4f113c2237ff457965b0f260c
+  <!-- <div>Teachable Machine Pose Model</div> -->
 <div><canvas id="canvas"></canvas></div>
 <button type="button" onclick="init()">Play</button>
 <div id="label-container"></div>
@@ -136,7 +41,7 @@
         maxPredictions = model.getTotalClasses();
 
         // Convenience function to setup a webcam
-        const size = 200;
+        const size = 400;
         const flip = true; // whether to flip the webcam
         webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
         await webcam.setup(); // request access to the webcam
@@ -188,12 +93,26 @@
           console.log('You have touched your head')
           add_score++;
           scoreElement.innerText = add_score;
+
+        }else if(scoreHead.probability < 0.24){
+          console.log('You have touched your headffghjkl')
+          // scoreElement.innerText = add_score;
+          // add_score--;
+          scoreElement.innerText = add_score;
+          // return add_score;
         }
 
         if(scoreShoulders.probability > 0.85){
           console.log('You have touched your shoulders')
           add_score++;
           scoreElement.innerText = add_score;
+        }
+        else if(scoreHead.probability < 0.24){
+          console.log('You have touched your headffghjkl')
+          // scoreElement.innerText = add_score;
+          // add_score--;
+          scoreElement.innerText = add_score;
+          // return add_score;
         }
 
         if(scoreWaist.probability > 0.85){

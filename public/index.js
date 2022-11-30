@@ -1,4 +1,4 @@
-let add_score = 1;
+let add_score = 0;
 
 
 let scoreElement = document.querySelector('.add_score');
