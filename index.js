@@ -4,7 +4,7 @@ const session = require('express-session');
 const cors = require('cors');
 const app = express();
 const pgp = require('pg-promise')({})
-const jifunze_ffs = require('./api/factory-function');
+const jifunze_ffs = require('./factory-function');
 
 let useSSL = false;
 let local = process.env.LOCAL || false;
