@@ -5,8 +5,9 @@ body {font-family: Arial, Helvetica, sans-serif;
     }
 
 h1{
-    color: #EEE;
-    padding-top: 30px;
+    color: rgb(192, 136, 62);
+    /* padding-top: 30px; */
+    margin-left: 600px;
     font-family: 'Coiny', cursive;
     text-align: center;
     font-size: 70px;
@@ -15,17 +16,28 @@ h1{
 
 @-webkit-keyframes bounce {
     0% {
-        text-shadow:
-                    0 5px 0 #ccc,
+        text-shadow:0 5px 0 #ccc,
                     0 2px 3px rgba(0, 0, 0, 1);  
     }
     100% {
       transform:translateY(-20px);
-      text-shadow:  0 50px 0 #black,
-                    0 0px 20px rgba(0, 0, 0, .8);
+      text-shadow:  0 50px 0 rgb(5, 0, 0),
+                    /* 0 0px 20px rgba(0, 0, 0, .8); */
     }
   }
 
-.score_box{
+.scored{
     
+    font-size:50px;
+    margin-top: 50px;
+    margin-left: 300px;
+    font-style: italic bold;
+    border: 10px solid green;
+    
+    
+}
+
+.nav{
+    display: flex;
+
 }
