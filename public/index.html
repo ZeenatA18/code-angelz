@@ -95,6 +95,13 @@
           console.log('You have touched your head')
           add_score++;
           scoreElement.innerText = add_score;
+
+        }else if(scoreHead.probability < 0.24){
+          console.log('You have touched your headffghjkl')
+          // scoreElement.innerText = add_score;
+          // add_score--;
+          scoreElement.innerText = add_score;
+          // return add_score;
           
         }
 
@@ -103,6 +110,13 @@
           add_score++;
           scoreElement.innerText = add_score;
           
+        }
+        else if(scoreHead.probability < 0.24){
+          console.log('You have touched your headffghjkl')
+          // scoreElement.innerText = add_score;
+          // add_score--;
+          scoreElement.innerText = add_score;
+          // return add_score;
         }
 
         if(scoreWaist.probability > 0.85){
