@@ -7,16 +7,7 @@ create table kids_name (
     id serial not null primary key,
     first_name text not null
 );
--- create table parent_name (
---     id serial not null primary key,
---     first_name text not null,
---     last_name text not null,
---     email varchar(255) not null
--- );
--- create table body_parts (
---     id serial not null primary key,
---     body_part_name text not null
--- );
+
 create table score (
     id serial not null primary key,
     score text not null,
