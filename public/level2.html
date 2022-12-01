@@ -61,11 +61,12 @@
 
         // const reload = document.querySelector(".restart_btn")
 
-        let mute = false;
+        let muted = false;
 
-        // async function mute() {
-        //  mute = true;
-        // }
+        async function mute() {
+         muted = true;
+         return muted
+        }
 
         async function pause(timeout) {
             paused = true;
@@ -163,7 +164,9 @@
                     // console.log('You have touched your head')
                     questioned = questions2[currentQuestion];
                     messageElement.innerHTML = questioned.success;
-                    bell.play();
+                    if(!mute){
+                       bell.play();
+                    }
 
                     pause(3000)
                         .then(function () {
