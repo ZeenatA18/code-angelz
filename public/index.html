@@ -2,226 +2,56 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JiFunze</title>
-  <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="index.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
 </head>
 
 <body>
-  <div class="nav">
-    <h1>Ji-fu-nze</h1>
 
-    <div class="score_box">
-      <div class="scored">score <span class="add_score">0</span></div>
+
+    <div id="id_player">
+        <div class="sign_in">
+            <h1>Ji-fu-nze</h1>
+        </div>
+
+        <!-- <form onsubmit="addUser()" method="post"> -->
+            <h2>Player Name </h2>
+            <input type="text" placeholder="Enter Player Name" class="name_holder" autocomplete="off" required>
+
+            <br>
+            <div class="enter_btn">
+                <button class="btn" onclick="addUser()">ENTER</button>
+                <br>
+        <!-- </form> -->
+
+        <div class="data">
+            
+        </div>
     </div>
-  </div>
-  <div id="press_play">Press play to start!
-    <script type="text/javascript">window.setTimeout("document.getElementById('press_play').style.display='none';", 7000); </script>
-  </div>
-  <div><canvas id="canvas"></canvas></div>
-  <button type="button" onclick="init()">Play</button>
-  <div id="label-container"></div>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
-  <script src="index.js"></script>
-  <script type="text/javascript">
-    // More API functions here:
-    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
+    </div>
 
-    // the link to your model provided by Teachable Machine export panel
-    const URL = "https://teachablemachine.withgoogle.com/models/SMn1C-Kwm/";
-    let model, webcam, ctx, labelContainer, maxPredictions;
+    <div class="levels hidden" id="id_levels">
+        <div class="level">
+            <h1>LEVELS</h1>
+        </div>
 
-    async function init() {
-      const modelURL = URL + "model.json";
-      const metadataURL = URL + "metadata.json";
+        <div class="level_btn">
 
-      // load the model and metadata
-      // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-      // Note: the pose library adds a tmPose object to your window (window.tmPose)
-      model = await tmPose.load(modelURL, metadataURL);
-      maxPredictions = model.getTotalClasses();
+            <!-- <button class="btn2">EASY</button> -->
 
-      // Convenience function to setup a webcam
-      const size = 400;
-      const flip = true; // whether to flip the webcam
-      webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
-      await webcam.setup(); // request access to the webcam
-      await webcam.play();
-      window.requestAnimationFrame(loop);
+            <a href="game.html">Easy</a>
 
-      // append/get elements to the DOM
-      const canvas = document.getElementById("canvas");
-      canvas.width = size; canvas.height = size;
-      ctx = canvas.getContext("2d");
-      labelContainer = document.getElementById("label-container");
-      for (let i = 0; i < maxPredictions; i++) { // and class labels
-        labelContainer.appendChild(document.createElement("div"));
-      }
-    }
-
-    async function loop(timestamp) {
-      webcam.update(); // update the webcam frame
-      await predict();
-
-      setTimeout(() => {
-        window.requestAnimationFrame(loop)
-      }, 3000)
-    }
-
-    async function predict() {
-      // Prediction #1: run input through posenet
-      // estimatePose can take in an image, video or canvas html element
-      const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
-      // Prediction 2: run input through teachable machine classification model
-      const prediction = await model.predict(posenetOutput);
-
-      // for (let i = 0; i < maxPredictions; i++) {
-      //   const classPrediction =
-      //     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-      //   labelContainer.childNodes[i].innerHTML = classPrediction;
-      // }
-      console.log(prediction)
-
-      const scoreHead = prediction[0];
-      const scoreShoulders = prediction[1];
-      const scoreWaist = prediction[2];
-
-      if (scoreHead.probability > 0.85) {
-        console.log('You have touched your head')
-        add_score++;
-        scoreElement.innerText = add_score;
-
-      } else if (scoreHead.probability < 0.24) {
-        // console.log('You have touched  Nonkululeko')
-        // scoreElement.innerText = add_score;
-
-      }
-
-      if (scoreShoulders.probability > 0.95) {
-        console.log('You have touched your shoulders')
-        add_score++;
-        scoreElement.innerText = add_score;
-
-      }
-      // else if (scoreHead.probability < 0.24) {
-      //   console.log('You have touched  Zeenat')
-      //   scoreElement.innerText = add_score;
-      // }
-
-      if (scoreWaist.probability > 0.85) {
-        console.log('You have touched your waist')
-        add_score++;
-        scoreElement.innerText = add_score;
-
-      }
-      // else if (scoreWaist.probability < 0.24) {
-      //   console.log('You have touched Nomzamo')
-      //   scoreElement.innerText = add_score;
-
-      // }
-      if(add_score === 3){
-        add_score = 0;
-      }
-
-
-
-      // finally draw the poses
-      drawPose(pose);
-    }
-
-    function drawPose(pose) {
-      if (webcam.canvas) {
-        ctx.drawImage(webcam.canvas, 0, 0);
-        // draw the keypoints and skeleton
-        if (pose) {
-          const minPartConfidence = 0.5;
-          tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
-          tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
-        }
-      }
-    }
-  </script>
-  <!-- <div></div> -->
-
+            <br>
+            <button class="btn">MEDIUM</button>
+            <br>
+            <button class="btn1">HARD</button>
+        </div>
+    </div>
 </body>
 
 </html>
-
-
-<!-- <div class="slideshow-container">
-  
-  <div class="mySlides fade">
-    <img src="pictures/9c5950a2276ccb97bbcbb5346544b9fd.jpg" style="width:30%">
-    <div class="text">Caption Text</div>
-  </div>
-  
-  <div class="mySlides fade">
-    <img src="pictures/ce4d7e7ae712b13e9e6e50957e90e43e.jpg" style="width:30%">
-  </div>
-  
-  <div class="mySlides fade">
-    <img src="pictures/cute-girl-face-cartoon_18591-41516.webp" style="width:30%">
-  </div>
-  
-  <div class="mySlides fade">
-    <img src="pictures/sense-parts-b-science-education-illustration-icons-representing-five-senses-attached-to-central-brain-78660621.jpg" style="width:30%">
-  </div>
-  
-  <div class="mySlides fade">
-    <img src="pictures/360_F_172190549_4xmlw96Sjt8w3WcqjKLVwtLOrJbWRLCL.jpg" style="width:30%">
-  </div>
-  
-  <div class="mySlides fade">
-    <img src="pictures/mouth-cartoon-icon-vector-11580920.jpg" style="width:30%">
-  </div>
-  
-  <div class="mySlides fade">
-    <img src="pictures/funny-mouth-with-tongue-out-comic-icon-free-vector.jpg" style="width:30%">
-  </div>
-  
- 
-  
-  </div>
-  <br>
-  
-  <div style="text-align:center">
-    <span class="dot"></span> 
-    <span class="dot"></span> 
-    <span class="dot"></span> 
-     <span class="dot"></span> 
-    <span class="dot"></span> 
-    <span class="dot"></span> 
-     <span class="dot"></span> 
-     <span class="dot"></span> 
-     <span class="dot"></span> 
-  </div>
-  
-      <script>
-  let slideIndex = 0;
-  showSlides();
-  
-  function showSlides() {
-    let i;
-    let slides = document.getElementsByClassName("mySlides");
-    let dots = document.getElementsByClassName("dot");
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";  
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1}    
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-  
-    
-    slides[slideIndex-1].style.display = "block";  
-    dots[slideIndex-1].className += " active";
-    setTimeout(showSlides, 3000); // Change image every 2 seconds
-  }
-  </script>
-  
-  
-  <button type="button"><a>PRESS NEXT</a></button> -->

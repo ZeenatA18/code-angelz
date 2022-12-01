@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const cors = require('cors');
+// const cors = require('cors');
 const app = express();
 const pgp = require('pg-promise')({})
 const jifunze_ffs = require('./factory-function');
@@ -24,16 +24,44 @@ const config = {
 const db = pgp(config);
 const jifunze = jifunze_ffs(db);
 
+app.use(session({
+    secret: "This is my long String that is used for session",
+    resave: false,
+    saveUninitialized: true
+}));
+
+// app.set('view engine', 'html');
+
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
-app.use(cors())
+// app.use(cors())
 app.use(express.static('public'))
 
-// app.get('/', async function(req, res){
-//     // res.render('index') never use render in api
+app.post('/api/register', async function(req, res){
+    let name = req.body.name_holder
+   console.log(name);
+    if (name) {
+        await jifunze.addPlayer(name);
+        // var msg = jifunze.getPlayer(name)
 
+        req.session.player = name;
 
-// })
+    }
+
+    res.json({
+        // msg
+    });
+
+})
+
+app.get('/api/register', async function(req, res){
+    // let name = req.body.name_holder
+    const level = await jifunze.getLevels();
+
+    res.json(level);
+
+})
+
 
 const PORT = process.env.PORT || 3008
 

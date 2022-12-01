@@ -1,43 +1,130 @@
-body {font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    background-image: url(./622891bcfdc10eaacd24b133_We_stand_with_Ukraine.jpg);
-    
-    }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  background-image: url(background.jpg);
 
-h1{
-    color: rgb(192, 136, 62);
-    /* padding-top: 30px; */
-    margin-left: 600px;
-    font-family: 'Coiny', cursive;
-    text-align: center;
-    font-size: 70px;
+}
+
+h1 {
+  color: rgb(192, 136, 62);
+  /* padding-top: 30px; */
+  margin-left: 500px;
+  font-family: 'Coiny', cursive;
+  text-align: center;
+  font-size: 70px;
   -webkit-animation: bounce .4s ease infinite alternate;
 }
 
 @-webkit-keyframes bounce {
-    0% {
-        text-shadow:0 5px 0 #ccc,
-                    0 2px 3px rgba(0, 0, 0, 1);  
-    }
-    100% {
-      transform:translateY(-20px);
-      text-shadow:  0 50px 0 rgb(5, 0, 0),
-                    /* 0 0px 20px rgba(0, 0, 0, .8); */
-    }
+  0% {
+    text-shadow: 0 5px 0 #ccc,
+      0 2px 3px rgba(0, 0, 0, 1);
   }
 
-.scored{
-    
-    font-size:50px;
-    margin-top: 50px;
-    margin-left: 300px;
-    font-style: italic bold;
-    border: 10px solid green;
-    
-    
+  100% {
+    transform: translateY(-20px);
+    text-shadow: 0 50px 0 rgb(5, 0, 0),
+      /* 0 0px 20px rgba(0, 0, 0, .8); */
+  }
 }
 
-.nav{
-    display: flex;
+.scored {
 
+  font-size: 50px;
+  margin-top: 50px;
+  margin-left: 300px;
+  font-style: italic bold;
+  border: 10px solid green;
+
+
+}
+
+.nav {
+  display: flex;
+}
+
+.sign_in {
+  margin-right: 500px;
+}
+
+label b {
+  padding: 50px;
+}
+
+.name_holder {
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.name_holder ::placeholder {
+  text-align: center;
+}
+
+.enter_btn {
+  padding: 20px;
+}
+
+
+.hidden {
+  display: none;
+}
+
+.levels {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  background-color: #f5faf8;
+  border-radius: 50px 50px;
+  margin: 3% 5% 5% 10%;
+  border: 1px solid #888;
+  width: 80%;
+  height: 80%;
+}
+
+.level {
+  color: rgb(192, 136, 62);
+  /* margin-right: 100px;
+margin-left: 100px; */
+  font-family: 'Coiny', cursive;
+  /* text-align: center; */
+  font-size: 70px;
+  -webkit-animation: bounce .4s ease infinite alternate;
+}
+
+.level_btn {
+  padding: 20px;
+}
+
+.level_btn button {
+  font-size: x-large;
+}
+
+.btn {
+  margin: 20px;
+  background-color: teal;
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.btn1 {
+  margin: 20px;
+  background-color: rgb(24, 31, 31);
+  border-radius: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.btn2 {
+  margin: 20px;
+  background-color: teal;
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.message {
+  font-size: xx-large;
 }
