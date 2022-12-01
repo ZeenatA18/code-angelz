@@ -45,7 +45,7 @@ function addUser() {
     console.log(name_holder);
     if (name_holder) {
 
-        axios.post('https://api/register', {
+        axios.post('/api/register', {
             name_holder        
         }).then(function() {
     
@@ -63,3 +63,13 @@ function addUser() {
     // action="/api/register"
 }
 
+// const data1 = document.querySelector('.data');
+
+
+// axios
+// .get('/api/register')
+// .then((result) =>{
+//     result.data.forEach(levels => {
+// data1.innerHTML += `<li>${levels.level}</li>`
+//     });
+// })
