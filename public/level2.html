@@ -7,20 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JiFunze</title>
     <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Poppins">
 </head>
 
 <body>
     <div class="nav">
+
+        <div>
+            Mute:  
+              <label class="switch">
+                <input type="checkbox" onchange="toggleMute()" >
+                <span class="slider round"></span>
+            </label>
+          </div>
+
         <h1>Level 2</h1>
 
         <div class="score_box">
             <div class="scored">score <span class="add_score">0</span></div>
         </div>
-
-        <label class="switch">
-            <input type="checkbox" checked>
-            <span class="slider round"></span>
-        </label>
 
     </div>
 
@@ -38,7 +43,7 @@
 
     <button class="play_btn" type="button" onclick="init()">Play</button>
 
-    <button class="next_btn" type="button" onclick="init()">Next</button>
+    <!-- <button class="next_btn" type="button" onclick="init()">Next</button> -->
 
     <button class="restart_btn" type="button" onclick="window.location.reload()">Restart</button>
 
@@ -83,7 +88,7 @@
             model = await tmPose.load(modelURL, metadataURL);
             maxPredictions = model.getTotalClasses();
 
-            const size = 400;
+            const size = 300;
             const flip = true; // whether to flip the webcam
             webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
             await webcam.setup(); // request access to the webcam
@@ -147,7 +152,7 @@
             let questioned = questions2[currentQuestion];
 
             if (!questioned) {
-                messageElement.innerHTML = "👏You have completed Level 2👏"
+                questionElem.innerHTML = "👏You have completed Level 2👏"
                 return;
             }
 

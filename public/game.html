@@ -7,31 +7,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JiFunze</title>
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Poppins">
 </head>
 
 <body>
   <div class="nav">
-    <h1>Level 1</h1>
 
+    <div>
+      Mute:  
+        <label class="switch">
+          <input type="checkbox" onchange="toggleMute()" >
+          <span class="slider round"></span>
+      </label>
+    </div>
+
+    <h1>Level 1</h1>
+    
     <div class="score_box">
       <div class="scored">score <span class="add_score">0</span></div>
     </div>
-
-
-    Mute:
-    <label class="switch">
-      <input type="checkbox" onchange="toggleMute()" >
-      <span class="slider round"></span>
-  </label>
-
 
   </div>
 
   <div class="question">
   </div>
 
-  <div class="message">
+  <div class="success1">
   </div>
+
+  <!-- <div class="error1">
+  </div> -->
 
   <div id="press_play">Press play to start!
     <script
@@ -43,7 +48,7 @@
 
   <button class="next_btn" type="button" onclick="init()"> <a href="level2.html"> Next </a></button>
 
-  <button class="restart_btn" type="button" onclick="window.location.reload()"> 🔃 </button>
+  <button class="restart_btn" type="button" onclick="window.location.reload()"> Restart </button>
 
   <div id="label-container"></div>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
@@ -58,7 +63,10 @@
 
     const questionElement = document.querySelector(".question");
 
-    const messageElement = document.querySelector(".message");
+    const successElem = document.querySelector(".success1");
+
+    // const errorElem = document.querySelector(".error1");
+
 
     const bell = new Audio('./bell.mp3');
 
@@ -90,7 +98,7 @@
       model = await tmPose.load(modelURL, metadataURL);
       maxPredictions = model.getTotalClasses();
 
-      const size = 400;
+      const size = 300;
       const flip = true; // whether to flip the webcam
       webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
       await webcam.setup(); // request access to the webcam
@@ -177,7 +185,7 @@
       let question = questions1[currentQuestion];
 
       if (!question) {
-        messageElement.innerHTML = "👏You have completed Level 1👏"
+        questionElement.innerHTML = "👏You have completed Level 1👏"
         return;
       }
 
@@ -193,7 +201,7 @@
         if (score.probability > 0.85) {
           // console.log('You have touched your head')
           question = questions1[currentQuestion];
-          messageElement.innerHTML = question.success;
+          successElem.innerHTML = question.success;
           if (!muted) {
             bell.play();
           }
@@ -220,10 +228,10 @@
           // alert("level done")
 
 
-          messageElement.innerHTML = "You did it!";
+          successElem.innerHTML = "You did it!";
 
         } else {
-          messageElement.innerHTML = question.error;
+          successElem.innerHTML = question.error;
 
           // make is disappear...
         }
@@ -238,11 +246,11 @@
       if (webcam.canvas) {
         ctx.drawImage(webcam.canvas, 0, 0);
         // draw the keypoints and skeleton
-        if (pose) {
-          const minPartConfidence = 0.5;
-          tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
-          tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
-        }
+        // if (pose) {
+        //   const minPartConfidence = 0.5;
+        //   tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
+        //   tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
+        // }
       }
     }
   </script>
