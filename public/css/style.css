@@ -93,13 +93,20 @@ label b {
   -webkit-animation: bounce .4s ease infinite alternate;
 }
 
-.level_btn {
-  padding: 20px;
+.btn01 {
+  margin: 20px;
+  background-color: teal;
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding: 10px;
+  font-family: 'Abril Fatface', serif;
+  font-size: large;
 }
 
-.level_btn button {
+/* .level_btn button {
   font-size: x-large;
-}
+} */
 
 .btn {
   margin: 20px;
@@ -109,6 +116,7 @@ label b {
   padding-right: 20px;
   padding: 10px;
   font-family: 'Abril Fatface', serif;
+  font-size: x-large;
 }
 
 .btn1 {
@@ -118,9 +126,13 @@ label b {
   padding-left: 50px;
   padding-right: 50px;
   padding: 10px;
+  font-family: 'Abril Fatface', serif;
+  font-size: x-large;
 }
 
 .btn2 {
+  font-size: x-large;
+  font-family: 'Abril Fatface', serif;
   margin: 20px;
   background-color: teal;
   border-radius: 10px;
