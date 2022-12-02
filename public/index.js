@@ -26,10 +26,10 @@ btn_play.addEventListener('click', function(){
 
 let nextbtn_play = document.querySelector('.next_btn')
 
-var audio1 = new Audio("./css/sh.mp3");
+// var audio1 = new Audio("./css/sh.mp3");
 
 nextbtn_play.addEventListener('click', function(){
-  audio1.play()
+  audio.play()
 }) 
 
 var levels = document.getElementById('id_levels');
