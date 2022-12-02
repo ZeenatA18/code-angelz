@@ -7,19 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JiFunze</title>
     <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Poppins">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Poppins">
 </head>
 
 <body>
     <div class="nav">
 
-        <div>
+        <!-- <div>
             Mute:  
               <label class="switch">
                 <input type="checkbox" onchange="toggleMute()" >
                 <span class="slider round"></span>
             </label>
-          </div>
+          </div> -->
 
         <h1>Level 2</h1>
 
@@ -33,6 +33,9 @@
     </div>
 
     <div class="message">
+    </div>
+
+    <div class="error1">
     </div>
 
     <div id="press_play">Press play to start!
@@ -62,16 +65,19 @@
 
         const messageElement = document.querySelector(".message");
 
+        const errorElem = document.querySelector(".error1");
+
+
         const bell = new Audio('./bell.mp3');
 
         // const reload = document.querySelector(".restart_btn")
 
-        let muted = false;
+        // let muted = false;
 
-        async function mute() {
-         muted = true;
-         return muted
-        }
+        // async function mute() {
+        //  muted = true;
+        //  return muted
+        // }
 
         async function pause(timeout) {
             paused = true;
@@ -119,22 +125,22 @@
 
         let questions2 = [
             {
-                question: "Please touch waist with your left hand and your shoulder with your right hand",
+                question: "Please touch <u><i>waist</u></i> with your <u><i>left hand</u></i> and your <u><i>shoulder</u></i> with your <u><i>right hand</u></i>",
                 success: "Hooray! Well done 🎉🎉",
                 error: "Oops! 😟 wrong, try again!"
             },
             {
-                question: "Please touch head with your right hand and your shoulder with your left hand",
+                question: "Please touch <u><i>head</u></i> with your <u><i>right hand</u></i> and your <u><i>shoulder</u></i> with your <u><i>left hand</u></i>",
                 success: "Hooray! Well done 🎉🎉",
                 error: "Oops! 😟 wrong, try again!"
             },
             {
-                question: "Please touch head with your left hand and your waist with your right hand",
+                question: "Please touch <u><i>head</u></i> with your <u><i>left hand</u></i> and your <u><i>waist</u></i> with your <u><i>right hand</u></i>",
                 success: "Hooray! Well done 🎉🎉",
                 error: "Oops! 😟 wrong, try again!"
             },
             {
-                question: "Please touch head with your left hand and your shoulder with your right hand",
+                question: "Please touch <u><i>head</u></i> with your <u><i>left hand</u></i> and your <u><i>shoulder</u></i> with your <u><i>right hand</u></i>",
                 success: "Hooray! Well done 🎉🎉",
                 error: "Oops! 😟 wrong, try again!"
             }
@@ -169,11 +175,11 @@
                     // console.log('You have touched your head')
                     questioned = questions2[currentQuestion];
                     messageElement.innerHTML = questioned.success;
-                    if(!mute){
-                       bell.play();
-                    }
+                    // if(!mute){
+                    bell.play();
+                    // }
 
-                    pause(3000)
+                    pause(7000)
                         .then(function () {
                             add_score++;
                             scoreElement.innerText = add_score;
@@ -198,7 +204,7 @@
                     messageElement.innerHTML = "You did it!";
 
                 } else {
-                    messageElement.innerHTML = questioned.error;
+                    errorElem.innerHTML = questioned.error;
 
                     // make is disappear...
                 }

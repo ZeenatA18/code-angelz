@@ -3,6 +3,10 @@ let add_score = 0;
 
 let scoreElement = document.querySelector('.add_score');
 let nameHolderElement = document.querySelector('.name_holder');
+type="text/javascript">window.setTimeout("document.querySelector('.error1').style.display='none';", 7000); 
+   
+
+
 
 
 // console.log(scoreElement)
@@ -11,13 +15,22 @@ let nameHolderElement = document.querySelector('.name_holder');
 
 // const score_box = document.querySelector('.score_box');
 
-// let btn_play = document.querySelector('.play_btn')
+let btn_play = document.querySelector('.btn01')
 
-// var audio = new Audio("./css/Head__Shoulders__Knees_&_Toes_with_Lyrics_♫_Kids_Learning_Songs_♫_Camp_Song_&_Brain_Breaks_for_Kids.mp3");
+var audio = new Audio("./css/sh.mp3");
 
-// btn_play.addEventListener('click', function(){
-//   audio.play()
-// })  
+btn_play.addEventListener('click', function(){
+  audio.play()
+}) 
+
+
+let nextbtn_play = document.querySelector('.next_btn')
+
+var audio1 = new Audio("./css/sh.mp3");
+
+nextbtn_play.addEventListener('click', function(){
+  audio1.play()
+}) 
 
 var levels = document.getElementById('id_levels');
 
@@ -50,6 +63,7 @@ function addUser() {
         }).then(function() {
     
             document.getElementById('id_levels').style.display = 'block';
+            
         })
         .catch(function(err){
             console.log(err);
@@ -61,15 +75,9 @@ function addUser() {
 
     // return false;
     // action="/api/register"
+    
 }
 
-// const data1 = document.querySelector('.data');
-
-
-// axios
-// .get('/api/register')
-// .then((result) =>{
-//     result.data.forEach(levels => {
-// data1.innerHTML += `<li>${levels.level}</li>`
-//     });
-// })
+function addUsers() {
+    document.getElementById('id_levels1').style.display = 'block';
+}
